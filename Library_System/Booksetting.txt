@@ -1,0 +1,17 @@
+ID:11345647,Name:Don Quixote,Author:Miguel de Cervantes,Genre:Adventure,Year of Publication:1605,State:Available,Number:5
+ID:12356489,Name:The Lord of the Rings,Author:Tolkien,Genre:Novel,Year of Publication:1955,State:Available,Number:5
+ID:12365498,Name:To Kill a Mockingbird,Author:Harper Lee,Genre:Novel,Year of Publication:1960,State:Available,Number:5
+ID:21546689,Name:Crime and Punishment,Author:Fyodor Dostoevsky,Genre:Fiction,Year of Publication:1866,State:Available,Number:5
+ID:23545689,Name:Wuthering Heights,Author:Emily Bronte,Genre:Romance,Year of Publication:1847,State:Available,Number:5
+ID:24879563,Name:The Brothers Karamazov,Author:Fyodor Dostoevsky,Genre:Novel,Year of Publication:1880,State:Available,Number:5
+ID:32456789,Name:One Hundred Years of Solitude,Author:Gabriel Garcia Marquez,Genre:Adventure,Year of Publication:1967,State:Available,Number:5
+ID:32546198,Name:The Catcher in the Rye,Author:J.D.Salinger,Genre:Novel,Year of Publication:1951,State:Available,Number:5
+ID:34789566,Name:Jane Eyre,Author:Charlotte Bronte,Genre:Novel,Year of Publication:1847,State:Available,Number:5
+ID:45654214,Name:Brave New World,Author:Aldous Huxley,Genre:Fiction,Year of Publication:1932,State:Available,Number:5
+ID:45678512,Name:The Road,Author:Cormac McCarthy,Genre:Fiction,Year of Publication:2006,State:Available,Number:5
+ID:47895631,Name:Gone Girl,Author:Gillian Flynn,Genre:Mystery,Year of Publication:2012,State:Available,Number:5
+ID:54563125,Name:1984,Author:George Orwell,Genre:Fiction,Year of Publication:1949,State:Available,Number:5
+ID:56987451,Name:The Hunger Games,Author:Suzanne Collins,Genre:Fiction,Year of Publication:2008,State:Available,Number:5
+ID:75642344,Name:The Book Thief,Author:Markus Zusak,Genre:Fiction,Year of Publication:2005,State:Available,Number:5
+ID:79856321,Name:Life of Pi,Author:Yann Martel,Genre:Adventure,Year of Publication:2001,State:Available,Number:5
+ID:87945613,Name:War and Peace,Author:Leo Tolstoy,Genre:Novel,Year of Publication:1869,State:Available,Number:5
