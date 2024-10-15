@@ -1,34 +1,34 @@
-﻿#include"QuanLiSach.h"
+﻿#include"BookSystem.h"
 // Hàm khởi tạo hệ thống quản lí Sách
-QuanliSach::QuanliSach() {
+BookSystem::BookSystem() {
 	fill(NumBooks, NumBooks + 17, 5);
 }
 // Hàm hủy hệ thống quản lí Sách
-QuanliSach::~QuanliSach() {
+BookSystem::~BookSystem() {
 
 }
 // Phương thức lấy vị trí index của một phần tử trong mảng
-Book QuanliSach::getBook(int pos) {
+Book BookSystem::getBook(int pos) {
 	return ListBooks[pos];
 }
 // Phương thức lấy kích thước sách trong mảng
-int QuanliSach::size() {
+int BookSystem::size() {
 	return ListBooks.size();
 }
 // Phương thức cộng thêm 1 quyển sách của đầu sách ở vị trí pos được lưu trong mảng NumBooks
-void QuanliSach::addNum(int pos) {
+void BookSystem::addNum(int pos) {
 	NumBooks[pos]++;
 }
 // Phương thức trừ đi 1 quyển sách của đầu sách ở vị trí pos được lưu trong mảng NumBooks
-void QuanliSach::lessNum(int pos) {
+void BookSystem::lessNum(int pos) {
 	NumBooks[pos]--;
 }
 // Phương thức lấy kích thước trong mảng
-int QuanliSach::sizeNum(int pos) {
+int BookSystem::sizeNum(int pos) {
 	return NumBooks[pos];
 }
 
-void QuanliSach::writeBookFile() {
+void BookSystem::writeBookFile() {
 	try {
 		// Khởi tại đối tượng File tên f
 		ofstream f;
@@ -84,7 +84,7 @@ void QuanliSach::writeBookFile() {
 	}
 }
 
-void QuanliSach::readBookFile() {
+void BookSystem::readBookFile() {
 	try {
 		// Khởi tại đối tượng File tên f
 		ifstream f;
@@ -216,7 +216,7 @@ void QuanliSach::readBookFile() {
 }
 
 // Sắp xếp danh sách quản lí sách
-void QuanliSach::sortListbook(Type type) {
+void BookSystem::sortListbook(Type type) {
 	switch (type)
 	{
 	case IDbook: {
@@ -272,7 +272,7 @@ void QuanliSach::sortListbook(Type type) {
 }
 
 // Hàm chuyển chuỗi chữ hoa sang chữ thường
-string QuanliSach::lowerString(string data) {
+string BookSystem::lowerString(string data) {
 	for (int i = 0; i < data.size(); i++) {
 		data[i] = tolower(data[i]);
 	}
@@ -280,7 +280,7 @@ string QuanliSach::lowerString(string data) {
 }
 
 // Tìm kiếm nhị phân theo tác giả, tên sách
-int QuanliSach::BinSearch(Type type, string str) {
+int BookSystem::BinSearch(Type type, string str) {
 	// Khi nhập tên sách, tác giả là chữ cái hoa hoặc thường thì đều có thể tìm kiếm được 
 	switch (type)
 	{

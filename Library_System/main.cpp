@@ -1,11 +1,9 @@
 ﻿#include"ThuVien.h"
-#include"QuanLiSach.h"
+
+ThuVien LibSystem;
 
 using namespace std;
 
-// Khai báo hệ thống quản lí thư viện
-ThuVien LibSystem;
-QuanliSach BookSystem;
 // Khai báo hàm hiển thị các lựa chọn tìm kiếm, nhập xuất thông tin trong hệ thống quản lí thư viện. 
 void Menu();
 // 1. Khai báo hàm hiển thị chức năng để người dùng mượn sách và cập nhật các thông tin sách đã mượn và người dùng là ai.
@@ -38,10 +36,11 @@ void reportMostBorrowedBooks();
 void MenuOverdueBooks();
 
 int main() {
-	BookSystem.readBookFile();
-	BookSystem.sortListbook(IDbook);
+	LibSystem.readNgayFile();
+	LibSystem.getBookSystem().readBookFile();
+	LibSystem.getBookSystem().sortListbook(IDbook);
 	system("cls");
-	LibSystem.readUserFile();
+	LibSystem.getUserSystem().readUserFile();
 	LibSystem.InputDayLib();
 	Menu();
 	return 0;
@@ -272,14 +271,14 @@ void Menu_search() {
 		}
 		case 3:
 		{
-			BookSystem.sortListbook(IDbook);
+			LibSystem.getBookSystem().sortListbook(IDbook);
 			Menu_Genre();
 			system("pause");
 			break;
 		}
 		case 4:
 		{
-			BookSystem.sortListbook(IDbook);
+			LibSystem.getBookSystem().sortListbook(IDbook);
 			Brk = 4;
 			break;
 		}
@@ -357,7 +356,7 @@ void BorrowedBook() {
 	string continues = "n";
 	do {
 		// Trả về index của ID của người dùng có từng mượn sách trong thư viện hay chưa.
-		int FoundIdx = LibSystem.check_UserID(people);
+		int FoundIdx = LibSystem.getUserSystem().check_UserID(people);
 		// Nếu không trùng ID User trong danh sách thì người đó chưa từng mượn sách
 		if (FoundIdx == -1) {
 			cout << "--> Nguoi dung nay chua tung muon sach trong thu vien!" << endl;
@@ -382,25 +381,26 @@ void BorrowedBook() {
 					select = stoi(book);
 				}
 			} while (!Regrex(BOOK, book));
-			Book temp = BookSystem.getBook(select - 1);
+			Book temp = LibSystem.getBookSystem().getBook(select - 1);
 			// Nếu số lượng quyển sách ấy còn trong thư viện thì cho người dùng mượn 
-			if (BookSystem.sizeNum(select - 1) > 0) {
+			if (LibSystem.getBookSystem().sizeNum(select - 1) > 0) {
 				// Thêm thông tin ngày mượn sách của người dùng khi họ mượn sách
 				temp.set_Day(LibSystem.getNgay().getpresentDay());
 				// Cho người dùng mới mượn sách 
 				people.Insert_Book(temp);
 				// Và lưu thông tin người dùng mới vào thư viện
-				LibSystem.Insert_User(people);
+				LibSystem.getUserSystem().Insert_User(people);
 				cout << "Muon sach thanh cong! Da luu thong tin nguoi dung vao trong thu vien." << endl;
 				system("pause");
 				// Trừ đi 1 quyển sách đã cho mượn
-				BookSystem.lessNum(select - 1);
+				LibSystem.getBookSystem().lessNum(select - 1);
 				// Nếu số lượng sách mà người dùng đã chọn đã hết thì đặt trạng thái sách đó là Borrowed
-				if (BookSystem.sizeNum(select - 1) == 0) {
-					BookSystem.getBook(select - 1).set_isAvailable(0);
+				if (LibSystem.getBookSystem().sizeNum(select - 1) == 0) {
+					LibSystem.getBookSystem().getBook(select - 1).set_isAvailable(0);
 				}
-				BookSystem.writeBookFile();
-				LibSystem.writeUserFile();
+				LibSystem.writeNgayFile();
+				LibSystem.getBookSystem().writeBookFile();
+				LibSystem.getUserSystem().writeUserFile();
 			}
 			else {
 				cout << "So luong quyen sach nay da het! Vui long chon quyen sach khac." << endl;
@@ -431,30 +431,31 @@ void BorrowedBook() {
 					select = stoi(book);
 				}
 			} while (!Regrex(BOOK, book));
-			Book temp = BookSystem.getBook(select - 1);
+			Book temp = LibSystem.getBookSystem().getBook(select - 1);
 			// Nếu số lượng quyển sách ấy còn trong thư viện thì cho người dùng mượn 
-			if (BookSystem.sizeNum(select - 1) > 0) {
+			if (LibSystem.getBookSystem().sizeNum(select - 1) > 0) {
 				// Khi có được index của người dùng đã mượn trước đây thì tìm kiếm sách mà người dùng đó muốn mượn
 				// có trùng với sách trước đây đã từng mượn chưa
-				int SearchID = LibSystem.search_ListBookID(LibSystem.getUser(FoundIdx), temp.get_ID());
+				int SearchID = LibSystem.getUserSystem().search_ListBookID(LibSystem.getUserSystem().getUser(FoundIdx), temp.get_ID());
 				// Nếu là mượn sách khác thì cập nhật thông tin người dùng (trừ ID User của người ấy) và cho mượn sách
 				if (SearchID == -1) {
 					// Cập nhật thông tin người dùng
-					LibSystem.updateInfoUser(FoundIdx, people);
+					LibSystem.getUserSystem().updateInfoUser(FoundIdx, people);
 					// Thêm thông tin ngày mượn sách của người dùng khi họ mượn sách
 					temp.set_Day(LibSystem.getNgay().getpresentDay());
 					// Cho người đó mượn
-					LibSystem.borrowedBook(FoundIdx, temp);
+					LibSystem.getUserSystem().borrowedBook(FoundIdx, temp);
 					cout << "Da cap nhat thong tin nguoi dung muon sach va cho ho muon sach." << endl;
 					system("pause");
 					// Trừ đi 1 quyển sách đã cho mượn
-					BookSystem.lessNum(select - 1);
+					LibSystem.getBookSystem().lessNum(select - 1);
 					// Nếu số lượng sách mà người dùng đã chọn đã hết thì đặt trạng thái sách đó là Borrowed
-					if (BookSystem.sizeNum(select - 1) == 0) {
-						BookSystem.getBook(select - 1).set_isAvailable(0);
+					if (LibSystem.getBookSystem().sizeNum(select - 1) == 0) {
+						LibSystem.getBookSystem().getBook(select - 1).set_isAvailable(0);
 					}
-					BookSystem.writeBookFile();
-					LibSystem.writeUserFile();
+					LibSystem.writeNgayFile();
+					LibSystem.getBookSystem().writeBookFile();
+					LibSystem.getUserSystem().writeUserFile();
 				}
 				// Nếu sách đó đã được người dùng mượn từ trước đây không cho mượn nữa
 				else {
@@ -504,7 +505,7 @@ void ReturnBook() {
 		}
 	} while (!Regrex(Key, idUser));
 	// Kiểm tra index của ID người dùng có trong danh sách không
-	int FoundIdx = LibSystem.check_UserID(key);
+	int FoundIdx = LibSystem.getUserSystem().check_UserID(key);
 	// Nếu người dùng chưa từng mượn sách thì thông báo và thoát.
 	if (FoundIdx == -1) {
 		cout << "--> Nguoi dung nay chua tung muon sach" << endl;
@@ -534,24 +535,24 @@ void ReturnBook() {
 				}
 			} while (!Regrex(Key, idBook));
 			// Tìm ID sách của người dùng đã tìm thấy trong danh sách trước đó
-			int FoundID = LibSystem.search_ListBookID(LibSystem.getUser(FoundIdx), ID);
-			int isreturnAll = LibSystem.getUser(FoundIdx).sizeBorrowedBook();
+			int FoundID = LibSystem.getUserSystem().search_ListBookID(LibSystem.getUserSystem().getUser(FoundIdx), ID);
+			int isreturnAll = LibSystem.getUserSystem().getUser(FoundIdx).sizeBorrowedBook();
 			// Nếu không có thì thông báo và không thực hiện trả được sách
 			if (FoundID == -1) {
 				cout << "ID cua sach nay khong co trong thu vien hoac nguoi dung khong co muon sach nay!" << endl;
 			}
 			// Nếu sách mà người dùng muốn trả có trong hệ thống người dùng đã mượn sách thì thực hiện trả sách
 			else {
-				LibSystem.returnBook(LibSystem.getUser(FoundIdx), FoundID);
+				LibSystem.getUserSystem().returnBook(LibSystem.getUserSystem().getUser(FoundIdx), FoundID);
 				// Duyệt hệ thống thông tin các sách có trong thư viện. Cập nhật trạng thái của sách có trong danh sách và file 
-				for (int i = 0; i < BookSystem.size(); i++) {
-					if (FoundID == BookSystem.getBook(i).get_ID()) {
-						BookSystem.addNum(i);
-						BookSystem.getBook(i).set_isAvailable(1);
+				for (int i = 0; i < LibSystem.getBookSystem().size(); i++) {
+					if (FoundID == LibSystem.getBookSystem().getBook(i).get_ID()) {
+						LibSystem.getBookSystem().addNum(i);
+						LibSystem.getBookSystem().getBook(i).set_isAvailable(1);
 					}
 				}
-				if (LibSystem.getUser(FoundIdx).sizeBorrowedBook() == 0) {
-					LibSystem.eraseUser(FoundIdx);
+				if (LibSystem.getUserSystem().getUser(FoundIdx).sizeBorrowedBook() == 0) {
+					LibSystem.getUserSystem().eraseUser(FoundIdx);
 					cout << "Nguoi dung nay da tra sach het cho thu vien roi! Cam on ban rat nhieu!" << endl;
 					system("pause");
 					isreturnAll = 0;
@@ -560,8 +561,9 @@ void ReturnBook() {
 					cout << "Nguoi dung nay da tra sach cho thu vien. Cam on ban rat nhieu!" << endl;
 					system("pause");
 				}
-				BookSystem.writeBookFile();
-				LibSystem.writeUserFile();
+				LibSystem.writeNgayFile();
+				LibSystem.getBookSystem().writeBookFile();
+				LibSystem.getUserSystem().writeUserFile();
 			}
 			// Nếu người dùng hiện tại đã trả hết sách mà mình mượn
 			if (isreturnAll > 0) {
@@ -603,8 +605,8 @@ void Search_Namebook() {
 			system("pause");
 		}
 	} while (!Regrex(Namebook, name));
-	BookSystem.sortListbook(Namebook);
-	int FoundIdx = BookSystem.BinSearch(Namebook, name);
+	LibSystem.getBookSystem().sortListbook(Namebook);
+	int FoundIdx = LibSystem.getBookSystem().BinSearch(Namebook, name);
 	if (FoundIdx == -1) {
 		cout << "\nKhong tim kiem thay ten sach trong thu vien!" << endl;
 	}
@@ -614,11 +616,11 @@ void Search_Namebook() {
 			<< setw(30) << "Author"
 			<< setw(20) << "Genre"
 			<< setw(30) << "Year of Publication" << endl;
-		cout << setw(35) << BookSystem.getBook(FoundIdx).get_Name()
-			<< setw(10) << BookSystem.getBook(FoundIdx).get_ID()
-			<< setw(30) << BookSystem.getBook(FoundIdx).get_Author()
-			<< setw(20) << BookSystem.getBook(FoundIdx).get_Genre()
-			<< setw(30) << BookSystem.getBook(FoundIdx).get_Year() << endl;
+		cout << setw(35) << LibSystem.getBookSystem().getBook(FoundIdx).get_Name()
+			<< setw(10) << LibSystem.getBookSystem().getBook(FoundIdx).get_ID()
+			<< setw(30) << LibSystem.getBookSystem().getBook(FoundIdx).get_Author()
+			<< setw(20) << LibSystem.getBookSystem().getBook(FoundIdx).get_Genre()
+			<< setw(30) << LibSystem.getBookSystem().getBook(FoundIdx).get_Year() << endl;
 	}
 }
 
@@ -636,8 +638,8 @@ void Search_Author() {
 			system("pause");
 		}
 	} while (!Regrex(Namebook, name));
-	BookSystem.sortListbook(Author);
-	int FoundIdx = BookSystem.BinSearch(Author, name);
+	LibSystem.getBookSystem().sortListbook(Author);
+	int FoundIdx = LibSystem.getBookSystem().BinSearch(Author, name);
 	if (FoundIdx == -1) {
 		cout << "\nKhong tim kiem thay ten tac gia trong thu vien!" << endl;
 	}
@@ -648,11 +650,11 @@ void Search_Author() {
 			<< setw(20) << "Genre"
 			<< setw(30) << "Year of Publication" << endl;
 		// Khi nhập tên tác giả là chữ cái hoa hoặc thường thì đều có thể tìm kiếm được 
-			cout << setw(35) << BookSystem.getBook(FoundIdx).get_Name()
-				<< setw(10) << BookSystem.getBook(FoundIdx).get_ID()
-				<< setw(30) << BookSystem.getBook(FoundIdx).get_Author()
-				<< setw(20) << BookSystem.getBook(FoundIdx).get_Genre()
-				<< setw(30) << BookSystem.getBook(FoundIdx).get_Year() << endl;
+			cout << setw(35) << LibSystem.getBookSystem().getBook(FoundIdx).get_Name()
+				<< setw(10) << LibSystem.getBookSystem().getBook(FoundIdx).get_ID()
+				<< setw(30) << LibSystem.getBookSystem().getBook(FoundIdx).get_Author()
+				<< setw(20) << LibSystem.getBookSystem().getBook(FoundIdx).get_Genre()
+				<< setw(30) << LibSystem.getBookSystem().getBook(FoundIdx).get_Year() << endl;
 			
 	}
 }
@@ -663,13 +665,13 @@ void Search_Genre(string data) {
 		<< setw(30) << "Author"
 		<< setw(20) << "Genre"
 		<< setw(30) << "Year of Publication" << endl;
-	for (int i = 0; i < BookSystem.size(); i++) {
-		if (BookSystem.getBook(i).get_Genre() == data) {
-			cout << setw(35) << BookSystem.getBook(i).get_Name()
-				<< setw(10) << BookSystem.getBook(i).get_ID()
-				<< setw(30) << BookSystem.getBook(i).get_Author()
-				<< setw(20) << BookSystem.getBook(i).get_Genre()
-				<< setw(30) << BookSystem.getBook(i).get_Year() << endl;
+	for (int i = 0; i < LibSystem.getBookSystem().size(); i++) {
+		if (LibSystem.getBookSystem().getBook(i).get_Genre() == data) {
+			cout << setw(35) << LibSystem.getBookSystem().getBook(i).get_Name()
+				<< setw(10) << LibSystem.getBookSystem().getBook(i).get_ID()
+				<< setw(30) << LibSystem.getBookSystem().getBook(i).get_Author()
+				<< setw(20) << LibSystem.getBookSystem().getBook(i).get_Genre()
+				<< setw(30) << LibSystem.getBookSystem().getBook(i).get_Year() << endl;
 		}
 	}
 }
@@ -754,20 +756,20 @@ void Output_User() {
 		<< setw(10) << "ID"
 		<< setw(25) << "Email"
 		<< setw(15) << "Phone number" << endl;
-	LibSystem.show_listUser();
+	LibSystem.getUserSystem().show_listUser();
 }
 
 void show_Listbook() {
 	cout << setw(7) << "STT"  << setw(10) << "ID code"
 		<< setw(35) << "Name book" << setw(30) << "Author"
 		<< setw(20) << "Genre" << setw(30) << "Year of Publication" << setw(15) << endl;
-	for (int i = 0; i < BookSystem.size(); i++) {
-		cout << setw(5)  << i + 1 << ". " << setw(10) << BookSystem.getBook(i).get_ID()
-			<< setw(35) << BookSystem.getBook(i).get_Name()
-			<< setw(30) << BookSystem.getBook(i).get_Author()
-			<< setw(20) << BookSystem.getBook(i).get_Genre()
-			<< setw(30) << BookSystem.getBook(i).get_Year() << setw(15);
-		if (BookSystem.getBook(i).get_isAvailable() == 1) {
+	for (int i = 0; i < LibSystem.getBookSystem().size(); i++) {
+		cout << setw(5)  << i + 1 << ". " << setw(10) << LibSystem.getBookSystem().getBook(i).get_ID()
+			<< setw(35) << LibSystem.getBookSystem().getBook(i).get_Name()
+			<< setw(30) << LibSystem.getBookSystem().getBook(i).get_Author()
+			<< setw(20) << LibSystem.getBookSystem().getBook(i).get_Genre()
+			<< setw(30) << LibSystem.getBookSystem().getBook(i).get_Year() << setw(15);
+		if (LibSystem.getBookSystem().getBook(i).get_isAvailable() == 1) {
 			cout << "Available" << endl;
 		}
 		else {
@@ -778,10 +780,10 @@ void show_Listbook() {
 
 // Hàm xuất thông tin các sách đã được mượn nhiều nhất
 void reportMostBorrowedBooks() {
-	int min = BookSystem.sizeNum(0);
+	int min = LibSystem.getBookSystem().sizeNum(0);
 	for (int i = 1; i < 17; i++) {
-		if (min > BookSystem.sizeNum(i)) {
-			min = BookSystem.sizeNum(i);
+		if (min > LibSystem.getBookSystem().sizeNum(i)) {
+			min = LibSystem.getBookSystem().sizeNum(i);
 		}
 	}
 	if (min == 5) {
@@ -800,12 +802,12 @@ void reportMostBorrowedBooks() {
 			<< setw(20) << "Genre"
 			<< setw(30) << "Year of Publication" << endl;
 		for (int i = 0; i < 17; i++) {
-			if (min == BookSystem.sizeNum(i)) {
-				cout << setw(35) << BookSystem.getBook(i).get_Name()
-					<< setw(10) << BookSystem.getBook(i).get_ID()
-					<< setw(30) << BookSystem.getBook(i).get_Author()
-					<< setw(20) << BookSystem.getBook(i).get_Genre()
-					<< setw(30) << BookSystem.getBook(i).get_Year() << endl;
+			if (min == LibSystem.getBookSystem().sizeNum(i)) {
+				cout << setw(35) << LibSystem.getBookSystem().getBook(i).get_Name()
+					<< setw(10) << LibSystem.getBookSystem().getBook(i).get_ID()
+					<< setw(30) << LibSystem.getBookSystem().getBook(i).get_Author()
+					<< setw(20) << LibSystem.getBookSystem().getBook(i).get_Genre()
+					<< setw(30) << LibSystem.getBookSystem().getBook(i).get_Year() << endl;
 			}
 		}
 		system("pause");

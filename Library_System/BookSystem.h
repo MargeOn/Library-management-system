@@ -9,13 +9,13 @@
 
 using namespace std;
 
-class QuanliSach
+class BookSystem
 {
 public:
 	// Hàm khởi tạo hệ thống quản lí User
-	QuanliSach();
+	BookSystem();
 	// Hàm hủy hệ thống quản lí User
-	~QuanliSach();
+	~BookSystem();
 	// Phương thức lấy vị trí index của một phần tử trong mảng
 	Book getBook(int pos);
 	// Phương thức lấy kích thước sách được lưu trữ trong danh sách quản lí sách

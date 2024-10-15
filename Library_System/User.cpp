@@ -8,17 +8,17 @@ User::~User() {
 
 }
 // Phương thức lấy các biến thành viên của đối tượng User của thư viện
-int User::get_ID() {
+int User::get_ID() const{
 	return id;
 }
-string User::get_Name() {
+string User::get_Name() const{
 	return name;
 }
-string User::get_Email() {
+string User::get_Email() const{
 	return email;
 }
 
-int User::get_PhoneNumber() {
+int User::get_PhoneNumber() const{
 	return phoneNumber;
 }
 // Phương thức cài đặt giá trị cho các biến thành viên của đối tượng User của trong thư viện
@@ -56,7 +56,7 @@ void User::Insert_Book(Book data) {
 	sortBorrowedbook();
 }
 // Hàm trả về vị trí index của một sách mà người dùng mượn
-Book User::getBorrowedBook(int pos) {
+Book User::getBorrowedBook(int pos) const{
 	return Borrowed_books[pos];
 }
 // Hàm xóa các người dùng đã không còn mượn sách 
@@ -64,7 +64,7 @@ void User::eraseBook(int index) {
 	Borrowed_books.erase(Borrowed_books.begin() + index);
 }
 // Hàm trả về số lượng sách mà người dùng đã mượn
-int User::sizeBorrowedBook() {
+int User::sizeBorrowedBook() const {
 	return Borrowed_books.size();
 }
 // Hàm sắp xếp sách mượn theo ID sách

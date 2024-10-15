@@ -13,7 +13,7 @@ public:
 	Ngay();
 	// Hàm lấy ngày tháng hiện tại của thư viện
 	string getpresentDay();
-	// Hàm trả về ngày tháng hiện tại của thư viện
+	// Hàm gán ngày tháng hiện tại của thư viện
 	void setpresentDay(string presentDay);
 	// Hàm kiểm tra quá trình nhập ngày hiện tại có phải là quá khứ của ngày trước đó mà thư viện lưu ở file không
 	bool isPastDay(const string& ngaythangnam);

@@ -7,7 +7,7 @@ Ngay::Ngay() {
 string Ngay::getpresentDay() {
 	return this->day;
 }
-// Hàm trả về ngày tháng hiện tại của thư viện
+// Hàm gán ngày tháng hiện tại của thư viện
 void Ngay::setpresentDay(string presentDay) {
 	int dayPresent = 0, monthPresent = 0;
 	// Tách chuỗi và lấy được ngày tháng hiện tại của thư viện

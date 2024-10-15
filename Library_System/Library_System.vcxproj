@@ -131,18 +131,20 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Ngay.cpp" />
     <ClCompile Include="People.cpp" />
-    <ClCompile Include="QuanliSach.cpp" />
+    <ClCompile Include="BookSystem.cpp" />
     <ClCompile Include="ThuVien.cpp" />
     <ClCompile Include="User.cpp" />
+    <ClCompile Include="UserSystem.cpp" />
     <ClCompile Include="ValidData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Book.h" />
     <ClInclude Include="Ngay.h" />
     <ClInclude Include="People.h" />
-    <ClInclude Include="QuanLiSach.h" />
+    <ClInclude Include="BookSystem.h" />
     <ClInclude Include="ThuVien.h" />
     <ClInclude Include="User.h" />
+    <ClInclude Include="UserSystem.h" />
     <ClInclude Include="ValidData.h" />
   </ItemGroup>
   <ItemGroup>
