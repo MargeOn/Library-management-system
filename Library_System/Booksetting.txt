@@ -1,17 +1,31 @@
-ID:11345647,Name:Don Quixote,Author:Miguel de Cervantes,Genre:Adventure,Year of Publication:1605,State:Available,Number:5
-ID:12356489,Name:The Lord of the Rings,Author:Tolkien,Genre:Novel,Year of Publication:1955,State:Available,Number:5
-ID:12365498,Name:To Kill a Mockingbird,Author:Harper Lee,Genre:Novel,Year of Publication:1960,State:Available,Number:5
-ID:21546689,Name:Crime and Punishment,Author:Fyodor Dostoevsky,Genre:Fiction,Year of Publication:1866,State:Available,Number:5
-ID:23545689,Name:Wuthering Heights,Author:Emily Bronte,Genre:Romance,Year of Publication:1847,State:Available,Number:5
-ID:24879563,Name:The Brothers Karamazov,Author:Fyodor Dostoevsky,Genre:Novel,Year of Publication:1880,State:Available,Number:5
-ID:32456789,Name:One Hundred Years of Solitude,Author:Gabriel Garcia Marquez,Genre:Adventure,Year of Publication:1967,State:Available,Number:5
-ID:32546198,Name:The Catcher in the Rye,Author:J.D.Salinger,Genre:Novel,Year of Publication:1951,State:Available,Number:5
-ID:34789566,Name:Jane Eyre,Author:Charlotte Bronte,Genre:Novel,Year of Publication:1847,State:Available,Number:5
-ID:45654214,Name:Brave New World,Author:Aldous Huxley,Genre:Fiction,Year of Publication:1932,State:Available,Number:5
-ID:45678512,Name:The Road,Author:Cormac McCarthy,Genre:Fiction,Year of Publication:2006,State:Available,Number:5
-ID:47895631,Name:Gone Girl,Author:Gillian Flynn,Genre:Mystery,Year of Publication:2012,State:Available,Number:5
-ID:54563125,Name:1984,Author:George Orwell,Genre:Fiction,Year of Publication:1949,State:Available,Number:5
-ID:56987451,Name:The Hunger Games,Author:Suzanne Collins,Genre:Fiction,Year of Publication:2008,State:Available,Number:5
-ID:75642344,Name:The Book Thief,Author:Markus Zusak,Genre:Fiction,Year of Publication:2005,State:Available,Number:5
-ID:79856321,Name:Life of Pi,Author:Yann Martel,Genre:Adventure,Year of Publication:2001,State:Available,Number:5
-ID:87945613,Name:War and Peace,Author:Leo Tolstoy,Genre:Novel,Year of Publication:1869,State:Available,Number:5
+ID:10532198,Title:Red White & Royal Blue,Author:Casey McQuiston,Catergory:Romance,Year of Publication:2019,Number:16
+ID:11431098,Title:Persuasion,Author:Jane Austen,Catergory:Romance,Year of Publication:1817,Number:19
+ID:12321987,Title:The Secret History,Author:Donna Tartt,Catergory:Mystery,Year of Publication:1992,Number:18
+ID:13321098,Title:The Divine Comedy,Author:Dante Alighieri,Catergory:Epic Poem,Year of Publication:1320,Number:16
+ID:14543217,Title:The Girl on the Train,Author:Paula Hawkins,Catergory:Mystery,Year of Publication:2015,Number:20
+ID:15918273,Title:Gone Girl,Author:Gillian Flynn,Catergory:Mystery,Year of Publication:2012,Number:20
+ID:16963208,Title:Jonathan Strange & Mr Norrell,Author:Susanna Clarke,Catergory:Fantasy,Year of Publication:2004,Number:20
+ID:17876309,Title:Death of a Salesman,Author:Arthur Miller,Catergory:Play,Year of Publication:1949,Number:15
+ID:18763209,Title:The House on Mango Street,Author:Sandra Cisneros,Catergory:Coming-of-age,Year of Publication:1984,Number:20
+ID:19632108,Title:Carrie Soto Is Back,Author:Taylor Jenkins Reid,Catergory:Historical Fiction,Year of Publication:2022,Number:17
+ID:20532107,Title:After I Do,Author:Taylor Jenkins Reid,Catergory:Romance,Year of Publication:2014,Number:20
+ID:21432187,Title:Verity,Author:Colleen Hoover,Catergory:Thriller,Year of Publication:2018,Number:20
+ID:22310987,Title:Sense and Sensibility,Author:Jane Austen,Catergory:Romance,Year of Publication:1811,Number:20
+ID:23219876,Title:The Goldfinch,Author:Donna Tartt,Catergory:Novel,Year of Publication:2013,Number:20
+ID:24210987,Title:The Count of Monte Cristo,Author:Alexandre Dumas,Catergory:Adventure,Year of Publication:1844,Number:20
+ID:25432176,Title:Pride and Prejudice,Author:Jane Austen,Catergory:Romance,Year of Publication:1813,Number:20
+ID:26827364,Title:1984,Author:George Orwell,Catergory:Fiction,Year of Publication:1949,Number:20
+ID:27863087,Title:Neverwhere,Author:Neil Gaiman,Catergory:Urban Fantasy,Year of Publication:1996,Number:20
+ID:28763098,Title:A Streetcar Named Desire,Author:Tennessee Williams,Catergory:Play,Year of Publication:1947,Number:20
+ID:29384756,Title:Crime and Punishment,Author:Fyodor Dostoevsky,Catergory:Fiction,Year of Publication:1866,Number:20
+ID:29632087,Title:Like Water for Chocolate,Author:Laura Esquivel,Catergory:Magical Realism,Year of Publication:1989,Number:20
+ID:30532076,Title:The Shadow of the Wind,Author:Carlos Ruiz Zafón,Catergory:Mystery,Year of Publication:2001,Number:20
+ID:31432096,Title:The Master and Margarita,Author:Mikhail Bulgakov,Catergory:Satire,Year of Publication:1967,Number:20
+ID:32321876,Title:It Ends With Us,Author:Colleen Hoover,Catergory:Romance,Year of Publication:2016,Number:20
+ID:33210976,Title:Emma,Author:Jane Austen,Catergory:Romance,Year of Publication:1815,Number:20
+ID:34198765,Title:Little Women,Author:Louisa May Alcott,Catergory:Childrens Litera,Year of Publication:1868,Number:20
+ID:35109876,Title:Les Misérables,Author:Victor Hugo,Catergory:Novel,Year of Publication:1862,Number:20
+ID:36321765,Title:The Adventures of Huck Finn,Author:Mark Twain,Catergory:Adventure,Year of Publication:1884,Number:20
+ID:37236451,Title:The Hunger Games,Author:Suzanne Collins,Catergory:Fiction,Year of Publication:2008,Number:20
+ID:38475619,Title:Wuthering Heights,Author:Emily Bronte,Catergory:Romance,Year of Publication:1847,Number:20
+ID:38760876,Title:American Gods,Author:Neil Gaiman,Catergory:Fantasy,Year of Publication:2001,Number:20

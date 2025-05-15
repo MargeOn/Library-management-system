@@ -1,15 +1,26 @@
-﻿#include"User.h"
+﻿#include <iostream>
+#include <iomanip>
+#include "User.h"
+#include "BorrowBook.h"
+#include "Book.h"
+
 
 // Hàm khởi tạo đối tượng Book
-User::User() {
+User::User(): userID(0), name(""), email(""),birthDay("") {
+
 }
 // Hàm hủy đối tượng Book
 User::~User() {
-
+	//cout << "Ham huy User" << endl;
 }
+
+string User::getRole() {
+	return this->role;
+}
+
 // Phương thức lấy các biến thành viên của đối tượng User của thư viện
 int User::get_ID() const{
-	return id;
+	return userID;
 }
 string User::get_Name() const{
 	return name;
@@ -18,68 +29,100 @@ string User::get_Email() const{
 	return email;
 }
 
-int User::get_PhoneNumber() const{
-	return phoneNumber;
+string User::get_BirthDay() const{
+	return birthDay;
 }
 // Phương thức cài đặt giá trị cho các biến thành viên của đối tượng User của trong thư viện
-void User::set_ID(int id) {
-	this->id = id;
-}
-void User::set_Name(string name) {
-	this->name = name;
-}
-void User::set_Email(string email) {
-	this->email = email;
-}
-void User::set_PhoneNumber(int phoneNumber) {
-	this->phoneNumber = phoneNumber;
+void User::setRole(string role) {
+	this->role = role;
 }
 
-// Xuất thông tin sách mà người dùng đang mượn
-void User::XuatThongtinSach() {
-	cout << setw(40) << "Name Book"
+void User::set_ID(int id) {
+	this->userID = id;
+}
+void User::set_Name(const string &name) {
+	this->name = name;
+}
+void User::set_Email(const string& email) {
+	this->email = email;
+}
+
+void User::set_BirthDay(const string& birthDay){
+	this->birthDay = birthDay;
+}
+
+void User::inputInfo() {
+	int id;
+	cout << "Nhap id cua nguoi muon: ";
+	cin >> id;
+	this->userID = id;
+
+	cin.ignore();
+	string name;
+	cout << "Nhap ten cua nguoi muon: ";
+	getline(cin, name);
+	this->name = name;
+
+	string birthDay;
+	cout << "Nhap ngay sinh cua nguoi muon: ";
+	getline(cin, birthDay);
+	this->birthDay = birthDay;
+
+	string email;
+	cout << "Nhap email cua nguoi muon: ";
+	getline(cin, email);
+	this->email = email;
+}
+void User::outputInfo() {
+	cout << setw(10) << this->get_ID()
+		<< setw(20) << this->get_Name()
+		<< setw(15) << this->get_BirthDay()
+		<< setw(25) << this->get_Email()
+		<< setw(15) << this->getRole();
+}
+
+void User::showBorrowBooks() {
+	cout << setw(20) << "Borrow Day"
 		<< setw(10) << "ID Book"
+		<< setw(30) << "Title"
 		<< setw(30) << "Author"
-		<< setw(20) << "Genre"
-		<< setw(10) << "Year" << endl;
-	for (int i = 0; i < Borrowed_books.size(); i++) {
-		cout << setw(40) << Borrowed_books[i].get_Name()
-			<< setw(10) << Borrowed_books[i].get_ID()
-			<< setw(30) << Borrowed_books[i].get_Author()
-			<< setw(20) << Borrowed_books[i].get_Genre()
-			<< setw(10) << Borrowed_books[i].get_Year() << endl;
+		<< setw(25) << "Catergory"
+		<< setw(15) << "Publish Year" 
+		<< setw(10) << "Quantity" << endl;
+	for (int i = 0; i < borrowBooks.size(); i++) {
+		cout << setw(20) << borrowBooks[i].getBorrowDay()
+			<< setw(10) << borrowBooks[i].getBook().get_ID()
+			<< setw(30) << borrowBooks[i].getBook().get_Title()
+			<< setw(30) << borrowBooks[i].getBook().get_Author()
+			<< setw(25) << borrowBooks[i].getBook().get_CategoryBook()
+			<< setw(15) << borrowBooks[i].getBook().get_Year()
+			<< setw(10) << borrowBooks[i].getBook().get_Quantity() << endl;
 	}
 }
-// Định nghĩa phương thức cập nhật thông tin danh sách các sách mà người dùng đã mượn
-void User::Insert_Book(Book data) {
-	Borrowed_books.push_back(data);
-	sortBorrowedbook();
+void User::showOverDueBooks() {
+
 }
-// Hàm trả về vị trí index của một sách mà người dùng mượn
-Book User::getBorrowedBook(int pos) const{
-	return Borrowed_books[pos];
+void User::addBorrowBook(const BorrowBook& borrowBook) {
+	borrowBooks.push_back(borrowBook);
 }
-// Hàm xóa các người dùng đã không còn mượn sách 
-void User::eraseBook(int index) {
-	Borrowed_books.erase(Borrowed_books.begin() + index);
+void User::removeBorrowBook(const int& index) {
+	if (index >= 0 && index < borrowBooks.size()) {
+		borrowBooks.erase(borrowBooks.begin() + index);
+	}
 }
-// Hàm trả về số lượng sách mà người dùng đã mượn
-int User::sizeBorrowedBook() const {
-	return Borrowed_books.size();
-}
-// Hàm sắp xếp sách mượn theo ID sách
-void User::sortBorrowedbook() {
-	for (int i = 0; i < Borrowed_books.size(); ++i) {
-		bool swapped = false;
-		for (int j = 0; j < Borrowed_books.size() - i - 1; ++j) {
-			if (Borrowed_books[j].get_ID() > Borrowed_books[j + 1].get_ID()) {
-				swap(Borrowed_books[j], Borrowed_books[j + 1]);
-				swapped = true;
-			}
-		}
-		// Nếu không có sự hoán đổi nào xảy ra trong một vòng lặp, mảng đã được sắp xếp
-		if (!swapped) {
-			break;
+
+int User::findBook(const int& bookID) {
+	for (int i = 0; i < borrowBooks.size(); i++) {
+		if (borrowBooks[i].getBook().get_ID() == bookID) {
+			return i;
 		}
 	}
+	return -1;
+}
+
+int User::getSizeBorrow() {
+	return borrowBooks.size();
+}
+BorrowBook& User::getBorrowBook(const int& index) {
+	return borrowBooks[index];
 }
