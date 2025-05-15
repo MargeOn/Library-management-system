@@ -20,7 +20,7 @@ các đầu sách có trong thư viện.
 
 ## Cấu trúc hệ thống có:
 
-![](Image/Thuvien.png)
+![](Image/ThuVien.png)
 
 ## Chức năng của chương trình:
 
